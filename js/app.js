@@ -19,11 +19,11 @@ let flippedCards = [];
  * Event Listeners
  */
 
-// flip cards to display symbols
+// display the symbol of each card on click
 cardDeck.addEventListener('click', function(evt) {
   const flippedCard = evt.target;
   if (flippedCard.classList.contains('card')) {
-    flipCards(flippedCard);
+    showSymbol(flippedCard);
     pushCards(flippedCard);
     console.log(flippedCards);
   }
@@ -33,8 +33,8 @@ cardDeck.addEventListener('click', function(evt) {
  * Functions
  */
 
-// toggle classes for flipped cards
-function flipCards(evt) {
+// toggle classes to show symbols
+function showSymbol(evt) {
   evt.classList.toggle('open');
   evt.classList.toggle('show');
 }
@@ -43,6 +43,8 @@ function flipCards(evt) {
 function pushCards(evt) {
   flippedCards.push(evt);
 }
+
+// 
 
 /*
  * Display the cards on the page
