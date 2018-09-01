@@ -61,11 +61,11 @@ function matchedCards(firstCard, secondCard) {
 
 // remove unmatched cards from list and hide symbol
 function unmatchedCards(firstCard, secondCard) {
-  setTimeout(() => {
+  setTimeout(function() {
     firstCard.classList.remove('open', 'show');
     secondCard.classList.remove('open', 'show');
     flippedCards = [];
-  }, 500);
+  }, 750);
 }
 
 /*
