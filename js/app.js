@@ -2,20 +2,37 @@
  * Create a list that holds all of your cards
  */
 
-// capture when a card in the deck is clicked
-// add/remove classes on the clicked card to show & hide the card & icon (i.e flip the card)
+/*
+ * Variable Declarations
+ */
+
+// select all cards
+let cards = document.querySelectorAll('.card');
+
+// select the cards parent
 const deck = document.querySelector('.deck');
 
+// empty list to hold selected cards
+let openedCards = [];
+
+/*
+ * Event Listeners
+ */
+
 deck.addEventListener('click', function(evt) {
-  const clickedCard = evt.target;
-  if (clickedCard.classList.contains('card')) {
-    toggleCards(clickedCard);
+  const openCard = evt.target;
+  if (openCard.classList.contains('card')) {
+    openCards(openCard);
   }
 });
 
-function toggleCards(clickedCard) {
-  clickedCard.classList.toggle('open');
-  clickedCard.classList.toggle('show');
+/*
+ * Functions
+ */
+
+function openCards(evt) {
+  evt.classList.toggle('open');
+  evt.classList.toggle('show');
 }
 
 // push the clicked cards into an array
