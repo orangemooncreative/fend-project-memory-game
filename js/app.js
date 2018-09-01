@@ -6,23 +6,26 @@
  * Variable Declarations
  */
 
-// select all cards
-let cards = document.querySelectorAll('.card');
+// select all individual cards
+let allCards = document.querySelectorAll('.card');
 
-// select the cards parent
-const deck = document.querySelector('.deck');
+// select the deck of cards
+const cardDeck = document.querySelector('.deck');
 
-// empty list to hold selected cards
-let openedCards = [];
+// empty list to hold flipped cards
+let flippedCards = [];
 
 /*
  * Event Listeners
  */
 
-deck.addEventListener('click', function(evt) {
-  const openCard = evt.target;
-  if (openCard.classList.contains('card')) {
-    openCards(openCard);
+// flip cards to display symbols
+cardDeck.addEventListener('click', function(evt) {
+  const flippedCard = evt.target;
+  if (flippedCard.classList.contains('card')) {
+    flipCards(flippedCard);
+    pushCards(flippedCard);
+    console.log(flippedCards);
   }
 });
 
@@ -30,12 +33,16 @@ deck.addEventListener('click', function(evt) {
  * Functions
  */
 
-function openCards(evt) {
+// toggle classes for flipped cards
+function flipCards(evt) {
   evt.classList.toggle('open');
   evt.classList.toggle('show');
 }
 
-// push the clicked cards into an array
+// push the flipped cards into an array
+function pushCards(evt) {
+  flippedCards.push(evt);
+}
 
 /*
  * Display the cards on the page
@@ -74,6 +81,8 @@ function shuffle(array) {
 // Star rating
 // Timer
 // Move counter
+
+// TODO: Use this for timer https://albert-gonzalez.github.io/easytimer.js/
 
 /*
  * TODO:
