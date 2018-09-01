@@ -31,6 +31,7 @@ cardDeck.addEventListener('click', function(evt) {
       if (firstCard.innerHTML === secondCard.innerHTML) {
         matchedCards(firstCard, secondCard);
       } else {
+        unmatchedCards(firstCard, secondCard);
         console.log("the cards don't match");
       }
     }
@@ -56,6 +57,15 @@ function pushCards(flippedCard) {
 function matchedCards(firstCard, secondCard) {
   firstCard.classList.add('match');
   secondCard.classList.add('match');
+}
+
+// remove unmatched cards from list and hide symbol
+function unmatchedCards(firstCard, secondCard) {
+  setTimeout(() => {
+    firstCard.classList.remove('open', 'show');
+    secondCard.classList.remove('open', 'show');
+    flippedCards = [];
+  }, 500);
 }
 
 /*
