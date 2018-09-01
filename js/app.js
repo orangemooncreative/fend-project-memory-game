@@ -40,11 +40,15 @@ function showSymbol(evt) {
 }
 
 // push the flipped cards into an array
-function pushCards(evt) {
-  flippedCards.push(evt);
+function pushCards(flippedCard) {
+  flippedCards.push(flippedCard);
 }
 
-// 
+// if  list has a card, check to see if new card matches
+function checkMatch() {
+  if (flippedCards.length > 0) {
+  }
+}
 
 /*
  * Display the cards on the page
