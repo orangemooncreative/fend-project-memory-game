@@ -11,7 +11,11 @@ let allCards = document.querySelectorAll('.card'),
   // select the deck of cards
   cardDeck = document.querySelector('.deck'),
   // empty list to hold flipped cards
-  flippedCards = [];
+  flippedCards = [],
+  // moves counter
+  movesCount = 0,
+  // select moves element
+  moves = document.querySelector('span.moves');
 
 /*
  * Event Listeners
@@ -24,6 +28,7 @@ cardDeck.addEventListener('click', function(evt) {
   if (flippedCard.classList.contains('card') && flippedCards.length < 2) {
     showSymbol(flippedCard);
     pushCards(flippedCard);
+    addMoves();
 
     if (flippedCards.length === 2) {
       let firstCard = flippedCards[0];
@@ -66,6 +71,12 @@ function unmatchedCards(firstCard, secondCard) {
     secondCard.classList.remove('open', 'show');
     flippedCards = [];
   }, 750);
+}
+
+// keep track of player moves
+function addMoves() {
+  movesCount++;
+  moves.textContent = movesCount;
 }
 
 /*
