@@ -57,6 +57,7 @@ function pushCards(flippedCard) {
 function matchedCards(firstCard, secondCard) {
   firstCard.classList.add('match');
   secondCard.classList.add('match');
+  flippedCards = [];
 }
 
 // remove unmatched cards from list and hide symbol
