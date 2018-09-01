@@ -32,7 +32,6 @@ cardDeck.addEventListener('click', function(evt) {
         matchedCards(firstCard, secondCard);
       } else {
         unmatchedCards(firstCard, secondCard);
-        console.log("the cards don't match");
       }
     }
   }
@@ -44,8 +43,8 @@ cardDeck.addEventListener('click', function(evt) {
 
 // toggle classes to show symbol styles
 function showSymbol(evt) {
-  evt.classList.toggle('open');
-  evt.classList.toggle('show');
+  evt.classList.add('open');
+  evt.classList.add('show');
 }
 
 // push the flipped cards into an array
