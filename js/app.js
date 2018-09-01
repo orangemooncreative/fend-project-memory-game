@@ -7,25 +7,33 @@
  */
 
 // select all individual cards
-let allCards = document.querySelectorAll('.card');
-
-// select the deck of cards
-const cardDeck = document.querySelector('.deck');
-
-// empty list to hold flipped cards
-let flippedCards = [];
+let allCards = document.querySelectorAll('.card'),
+  // select the deck of cards
+  cardDeck = document.querySelector('.deck'),
+  // empty list to hold flipped cards
+  flippedCards = [];
 
 /*
  * Event Listeners
  */
 
-// display the symbol of each card on click
+// add an event listener to display the symbol of each card on click
 cardDeck.addEventListener('click', function(evt) {
   const flippedCard = evt.target;
-  if (flippedCard.classList.contains('card')) {
+  // only allow two cards to flip at a time
+  if (flippedCard.classList.contains('card') && flippedCards.length < 2) {
     showSymbol(flippedCard);
     pushCards(flippedCard);
-    console.log(flippedCards);
+
+    if (flippedCards.length === 2) {
+      let firstCard = flippedCards[0];
+      let secondCard = flippedCards[1];
+      if (firstCard.innerHTML === secondCard.innerHTML) {
+        matchedCards(firstCard, secondCard);
+      } else {
+        console.log("the cards don't match");
+      }
+    }
   }
 });
 
@@ -33,7 +41,7 @@ cardDeck.addEventListener('click', function(evt) {
  * Functions
  */
 
-// toggle classes to show symbols
+// toggle classes to show symbol styles
 function showSymbol(evt) {
   evt.classList.toggle('open');
   evt.classList.toggle('show');
@@ -44,10 +52,10 @@ function pushCards(flippedCard) {
   flippedCards.push(flippedCard);
 }
 
-// if  list has a card, check to see if new card matches
-function checkMatch() {
-  if (flippedCards.length > 0) {
-  }
+// lock matched cards in the open position
+function matchedCards(firstCard, secondCard) {
+  firstCard.classList.add('match');
+  secondCard.classList.add('match');
 }
 
 /*
