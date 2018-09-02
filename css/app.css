@@ -1,3 +1,5 @@
+/* global styles */
+
 html {
   box-sizing: border-box;
 }
@@ -28,9 +30,37 @@ body {
   flex-direction: column;
 }
 
-h1 {
+h1,
+h2,
+h3 {
   font-family: 'Open Sans', sans-serif;
+  line-height: 1;
+  margin-top: 0;
+}
+
+h1 {
   font-weight: 300;
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+button {
+  background: transparent;
+  border-radius: 4px;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+.button__primary {
+  background: #94d82d;
+}
+
+.button__secondary {
+  border: 1.5px solid #82c91e;
 }
 
 /*
@@ -106,4 +136,44 @@ h1 {
 .score-panel .restart {
   float: right;
   cursor: pointer;
+}
+
+/* modal styles */
+.modal {
+  background: rgba(52, 58, 64, 0.8);
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  z-index: 99;
+}
+.modal__wrapper {
+  background: #f1f3f5;
+  display: flex;
+  flex-direction: column;
+  height: 50vh;
+  justify-content: center;
+  margin: 0 auto;
+  text-align: center;
+  width: 50vw;
+}
+
+.modal__stats {
+  margin-bottom: 2rem;
+}
+
+.modal__stats ul {
+  display: inline-block;
+  list-style: none;
+}
+
+.modal__buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 40%;
 }

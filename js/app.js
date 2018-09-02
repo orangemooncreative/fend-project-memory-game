@@ -127,7 +127,7 @@ function playerMoves() {
   }
 }
 
-// hide stars
+// hide stars & keep stars count
 function hideStar() {
   if (movesCount === 10) {
     stars[2].setAttribute('style', 'display: none');
