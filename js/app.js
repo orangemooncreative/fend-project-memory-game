@@ -6,8 +6,7 @@
  * Variable Declarations
  */
 
-let allCards = document.querySelectorAll('.card'),
-  cardDeck = document.querySelector('.deck'),
+let cardDeck = document.querySelector('.deck'),
   moves = document.querySelector('span.moves'),
   stars = document.querySelectorAll('.stars li'),
   timer = document.querySelector('.timer'),
@@ -16,6 +15,7 @@ let allCards = document.querySelectorAll('.card'),
   cancelButton = document.querySelector('.button__secondary'),
   playButton = document.querySelector('.button__primary'),
   resetButton = document.querySelector('.restart'),
+  cards = document.querySelectorAll('.deck li'),
   flippedCards = [],
   movesCount = 0,
   starsCount = 3,
@@ -200,6 +200,12 @@ function resetTimer() {
   stopTimer();
 }
 
+function resetCards() {
+  for (let card of cards) {
+    card.className = 'card';
+  }
+}
+
 resetButton.addEventListener('click', function() {
   resetGame();
 });
@@ -209,6 +215,7 @@ resetButton.addEventListener('click', function() {
 playButton.addEventListener('click', function() {
   hideModal();
   resetGame();
+  resetCards();
 });
 
 /*
