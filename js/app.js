@@ -14,6 +14,8 @@ let allCards = document.querySelectorAll('.card'),
   flippedCards = [],
   // count player moves
   movesCount = 0,
+  // count player stars
+  starsCount = 3,
   // select moves element
   moves = document.querySelector('span.moves'),
   // count matches
@@ -25,6 +27,10 @@ let allCards = document.querySelectorAll('.card'),
   seconds = 0,
   minutes = 0,
   timer = document.querySelector('.timer');
+
+// test Modal
+minutes = 3;
+seconds = 5;
 
 /*
  * Event Listeners
@@ -74,6 +80,7 @@ let gameTimer = function buildTimer() {
   // stop timer if all cards are matched
   if (matchedCards === 8) {
     stopTimer();
+    showEndStats();
   }
 };
 
@@ -128,11 +135,24 @@ function playerMoves() {
 function hideStar() {
   if (movesCount === 10) {
     stars[2].setAttribute('style', 'display: none');
+    starsCount = 2;
   } else if (movesCount >= 20) {
     stars[1].setAttribute('style', 'display: none');
+    starsCount = 1;
   }
+  return starsCount;
 }
 
+// show end of game stats
+function showEndStats() {
+  const modalTime = document.querySelector('#modal__time');
+  const modalMoves = document.querySelector('#modal__moves');
+  const modalStars = document.querySelector('#modal__stars');
+
+  modalTime.innerHTML = `Time: ${minutes}:${seconds}`;
+  modalMoves.innerHTML = `Moves: ${movesCount}`;
+  modalStars.innerHTML = `Stars: ${starsCount}`;
+}
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
