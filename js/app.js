@@ -16,8 +16,6 @@ let allCards = document.querySelectorAll('.card'),
   movesCount = 0,
   // select moves element
   moves = document.querySelector('span.moves'),
-  // select star list
-  starsList = document.querySelector('.stars'),
   // select stars
   stars = document.querySelectorAll('.stars li');
 
@@ -88,14 +86,8 @@ function addMoves() {
 function hideStar() {
   if (movesCount === 10) {
     stars[2].setAttribute('style', 'display: none');
-  } else if (movesCount === 20) {
+  } else if (movesCount >= 20) {
     stars[1].setAttribute('style', 'display: none');
-  } else if (movesCount === 40) {
-    stars[0].setAttribute('style', 'display: none');
-    starsList.insertAdjacentHTML(
-      'beforeend',
-      '<li>Sorry, no more stars | </li>'
-    );
   }
 }
 
