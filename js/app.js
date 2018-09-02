@@ -155,6 +155,7 @@ function showModal() {
   modalStars.innerHTML = `<strong>STARS:</strong> ${starsCount}`;
 
   modal.classList.remove('hide');
+  modalOverlay.classList.remove('hide');
 }
 
 // hide modal on clicking cancel
