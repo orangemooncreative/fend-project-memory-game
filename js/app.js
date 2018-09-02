@@ -6,39 +6,23 @@
  * Variable Declarations
  */
 
-// select all individual cards
 let allCards = document.querySelectorAll('.card'),
-  // select the deck of cards
   cardDeck = document.querySelector('.deck'),
-  // empty list to hold flipped cards
-  flippedCards = [],
-  // count player moves
-  movesCount = 0,
-  // count player stars
-  starsCount = 3,
-  // select moves element
   moves = document.querySelector('span.moves'),
-  // count matches
-  matchedCards = 0,
-  // select stars element
   stars = document.querySelectorAll('.stars li'),
-  // game timer variables
-  time = 0,
-  seconds = 0,
-  minutes = 0,
   timer = document.querySelector('.timer'),
-  // modal & modal overlay
   modal = document.querySelector('.modal'),
   modalOverlay = document.querySelector('.modal__overlay'),
-  // modal buttons
   cancelButton = document.querySelector('.button__secondary'),
   playButton = document.querySelector('.button__primary'),
-  // reset button
-  resetButton = document.querySelector('.restart');
-
-/*
- * Event Listeners
- */
+  resetButton = document.querySelector('.restart'),
+  flippedCards = [],
+  movesCount = 0,
+  starsCount = 3,
+  matchedCards = 0,
+  time = 0,
+  seconds = 0,
+  minutes = 0;
 
 /*
  * Build the Game Timers
