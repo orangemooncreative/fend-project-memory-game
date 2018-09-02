@@ -49,6 +49,8 @@ cardDeck.addEventListener('click', function(evt) {
  * Functions
  */
 
+// start timer
+
 // toggle classes to show symbol styles
 function showSymbol(evt) {
   evt.classList.add('open');
