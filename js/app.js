@@ -28,10 +28,6 @@ let allCards = document.querySelectorAll('.card'),
   minutes = 0,
   timer = document.querySelector('.timer');
 
-// test Modal
-minutes = 3;
-seconds = 5;
-
 /*
  * Event Listeners
  */
