@@ -26,8 +26,13 @@ let allCards = document.querySelectorAll('.card'),
   time = 0,
   seconds = 0,
   minutes = 0,
-  timer = document.querySelector('.timer');
-
+  timer = document.querySelector('.timer'),
+  // modal & modal overlay
+  modal = document.querySelector('.modal'),
+  modalOverlay = document.querySelector('.modal__overlay'),
+  // modal buttons
+  cancelButton = document.querySelector('.button__secondary'),
+  playButton = document.querySelector('.button__primary');
 /*
  * Event Listeners
  */
@@ -76,7 +81,7 @@ let gameTimer = function buildTimer() {
   // stop timer if all cards are matched
   if (matchedCards === 8) {
     stopTimer();
-    showEndStats();
+    showModal();
   }
 };
 
@@ -140,15 +145,25 @@ function hideStar() {
 }
 
 // show end of game stats
-function showEndStats() {
+function showModal() {
   const modalTime = document.querySelector('#modal__time');
   const modalMoves = document.querySelector('#modal__moves');
   const modalStars = document.querySelector('#modal__stars');
 
-  modalTime.innerHTML = `Time: ${minutes}:${seconds}`;
-  modalMoves.innerHTML = `Moves: ${movesCount}`;
-  modalStars.innerHTML = `Stars: ${starsCount}`;
+  modalTime.innerHTML = `<strong>TIME:</strong> ${minutes}:${seconds}`;
+  modalMoves.innerHTML = `<strong>MOVES:</strong> ${movesCount}`;
+  modalStars.innerHTML = `<strong>STARS:</strong> ${starsCount}`;
+
+  modal.classList.remove('hide');
 }
+
+// hide modal on clicking cancel
+
+cancelButton.addEventListener('click', function hideModal() {
+  modal.classList.add('hide');
+  modalOverlay.classList.add('hide');
+});
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
