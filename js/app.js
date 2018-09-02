@@ -15,7 +15,11 @@ let allCards = document.querySelectorAll('.card'),
   // moves counter
   movesCount = 0,
   // select moves element
-  moves = document.querySelector('span.moves');
+  moves = document.querySelector('span.moves'),
+  // select star list
+  starsList = document.querySelector('.stars'),
+  // select stars
+  stars = document.querySelectorAll('.stars li');
 
 /*
  * Event Listeners
@@ -29,6 +33,7 @@ cardDeck.addEventListener('click', function(evt) {
     showSymbol(flippedCard);
     pushCards(flippedCard);
     addMoves();
+    hideStar();
 
     if (flippedCards.length === 2) {
       let firstCard = flippedCards[0];
@@ -79,8 +84,20 @@ function addMoves() {
   moves.textContent = movesCount;
 }
 
-// if all cards match display card with final score
-function finalScore() {}
+// hide stars
+function hideStar() {
+  if (movesCount === 10) {
+    stars[2].setAttribute('style', 'display: none');
+  } else if (movesCount === 20) {
+    stars[1].setAttribute('style', 'display: none');
+  } else if (movesCount === 40) {
+    stars[0].setAttribute('style', 'display: none');
+    starsList.insertAdjacentHTML(
+      'beforeend',
+      '<li>Sorry, no more stars | </li>'
+    );
+  }
+}
 
 /*
  * Display the cards on the page
