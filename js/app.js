@@ -30,7 +30,7 @@ cardDeck.addEventListener('click', function(evt) {
   if (flippedCard.classList.contains('card') && flippedCards.length < 2) {
     showSymbol(flippedCard);
     pushCards(flippedCard);
-    addMoves();
+    playerMoves();
     hideStar();
 
     if (flippedCards.length === 2) {
@@ -77,7 +77,7 @@ function notMatching(firstCard, secondCard) {
 }
 
 // keep track of player moves
-function addMoves() {
+function playerMoves() {
   movesCount++;
   moves.textContent = movesCount;
 }
