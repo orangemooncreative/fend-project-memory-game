@@ -12,12 +12,17 @@ let allCards = document.querySelectorAll('.card'),
   cardDeck = document.querySelector('.deck'),
   // empty list to hold flipped cards
   flippedCards = [],
-  // moves counter
+  // count player moves
   movesCount = 0,
   // select moves element
   moves = document.querySelector('span.moves'),
-  // select stars
-  stars = document.querySelectorAll('.stars li');
+  // select stars element
+  stars = document.querySelectorAll('.stars li'),
+  // game timer variables
+  time = 0,
+  seconds = 0,
+  minutes = 0,
+  timer = document.querySelector('.timer');
 
 /*
  * Event Listeners
@@ -49,7 +54,25 @@ cardDeck.addEventListener('click', function(evt) {
  * Functions
  */
 
-// start timer
+// build a game timer
+// inspired by https://stackoverflow.com/questions/3733227/javascript-seconds-to-minutes-and-seconds
+let builtTimer = function buildTimer() {
+  time++;
+  seconds = time % 60;
+  minutes = Math.floor(time / 60);
+  if (seconds <= 9) {
+    seconds = `0${seconds}`;
+  }
+  if (minutes <= 9) {
+    minutes = `0${minutes}`;
+  }
+  timer.textContent = `${minutes}:${seconds}`;
+};
+
+// start the game timer
+function startTimer() {
+  setInterval(builtTimer, 1000);
+}
 
 // toggle classes to show symbol styles
 function showSymbol(evt) {
@@ -78,10 +101,13 @@ function notMatching(firstCard, secondCard) {
   }, 750);
 }
 
-// keep track of player moves
+// keep track of player moves and start timer
 function playerMoves() {
   movesCount++;
   moves.textContent = movesCount;
+  if (movesCount === 1) {
+    startTimer();
+  }
 }
 
 // hide stars
@@ -130,8 +156,6 @@ function shuffle(array) {
 // Star rating
 // Timer
 // Move counter
-
-// TODO: Use this for timer https://albert-gonzalez.github.io/easytimer.js/
 
 /*
  * TODO:
