@@ -34,9 +34,9 @@ cardDeck.addEventListener('click', function(evt) {
       let firstCard = flippedCards[0];
       let secondCard = flippedCards[1];
       if (firstCard.innerHTML === secondCard.innerHTML) {
-        matchedCards(firstCard, secondCard);
+        isMatching(firstCard, secondCard);
       } else {
-        unmatchedCards(firstCard, secondCard);
+        notMatching(firstCard, secondCard);
       }
     }
   }
@@ -58,14 +58,14 @@ function pushCards(flippedCard) {
 }
 
 // lock matched cards in the open position
-function matchedCards(firstCard, secondCard) {
+function isMatching(firstCard, secondCard) {
   firstCard.classList.add('match');
   secondCard.classList.add('match');
   flippedCards = [];
 }
 
 // remove unmatched cards from list and hide symbol
-function unmatchedCards(firstCard, secondCard) {
+function notMatching(firstCard, secondCard) {
   setTimeout(function() {
     firstCard.classList.remove('open', 'show');
     secondCard.classList.remove('open', 'show');
@@ -78,6 +78,9 @@ function addMoves() {
   movesCount++;
   moves.textContent = movesCount;
 }
+
+// if all cards match display card with final score
+function finalScore() {}
 
 /*
  * Display the cards on the page
