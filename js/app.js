@@ -16,6 +16,8 @@ let allCards = document.querySelectorAll('.card'),
   movesCount = 0,
   // select moves element
   moves = document.querySelector('span.moves'),
+  // count matches
+  matchedCards = 0,
   // select stars element
   stars = document.querySelectorAll('.stars li'),
   // game timer variables
@@ -43,6 +45,7 @@ cardDeck.addEventListener('click', function(evt) {
       let secondCard = flippedCards[1];
       if (firstCard.innerHTML === secondCard.innerHTML) {
         isMatching(firstCard, secondCard);
+        matchedCards++;
       } else {
         notMatching(firstCard, secondCard);
       }
@@ -56,7 +59,7 @@ cardDeck.addEventListener('click', function(evt) {
 
 // build a game timer
 // inspired by https://stackoverflow.com/questions/3733227/javascript-seconds-to-minutes-and-seconds
-let builtTimer = function buildTimer() {
+let gameTimer = function buildTimer() {
   time++;
   seconds = time % 60;
   minutes = Math.floor(time / 60);
@@ -66,12 +69,23 @@ let builtTimer = function buildTimer() {
   if (minutes <= 9) {
     minutes = `0${minutes}`;
   }
+  // update html with minutes and seconds
   timer.textContent = `${minutes}:${seconds}`;
+  // stop timer if all cards are matched
+  if (matchedCards === 8) {
+    stopTimer();
+  }
 };
 
 // start the game timer
 function startTimer() {
-  setInterval(builtTimer, 1000);
+  handle = setInterval(gameTimer, 1000);
+}
+
+// stop the game timer
+function stopTimer() {
+  clearInterval(handle);
+  handle = 0;
 }
 
 // toggle classes to show symbol styles
