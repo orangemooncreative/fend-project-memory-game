@@ -32,7 +32,9 @@ let allCards = document.querySelectorAll('.card'),
   modalOverlay = document.querySelector('.modal__overlay'),
   // modal buttons
   cancelButton = document.querySelector('.button__secondary'),
-  playButton = document.querySelector('.button__primary');
+  playButton = document.querySelector('.button__primary'),
+  // reset button
+  resetButton = document.querySelector('.restart');
 
 /*
  * Event Listeners
@@ -175,10 +177,54 @@ function showModal() {
 }
 
 // hide modal on clicking cancel
-
-cancelButton.addEventListener('click', function hideModal() {
+function hideModal() {
   modal.classList.add('hide');
   modalOverlay.classList.add('hide');
+}
+
+cancelButton.addEventListener('click', function() {
+  hideModal();
+});
+
+/*
+ * Reset Game
+ */
+
+function resetGame() {
+  matchedCards = 0;
+  resetStars();
+  resetMoves();
+  resetTimer();
+}
+
+function resetStars() {
+  starsCount = 3;
+  stars[2].removeAttribute('style');
+  stars[1].removeAttribute('style');
+}
+
+function resetMoves() {
+  movesCount = 0;
+  moves.textContent = movesCount;
+}
+
+function resetTimer() {
+  time = 0;
+  seconds = 0;
+  minutes = 0;
+  timer.textContent = `0${minutes}:0${seconds}`;
+  stopTimer();
+}
+
+resetButton.addEventListener('click', function() {
+  resetGame();
+});
+
+// play the game again
+
+playButton.addEventListener('click', function() {
+  hideModal();
+  resetGame();
 });
 
 /*
