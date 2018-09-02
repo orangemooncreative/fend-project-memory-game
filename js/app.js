@@ -33,38 +33,15 @@ let allCards = document.querySelectorAll('.card'),
   // modal buttons
   cancelButton = document.querySelector('.button__secondary'),
   playButton = document.querySelector('.button__primary');
+
 /*
  * Event Listeners
  */
 
-// add an event listener to display the symbol of each card on click
-cardDeck.addEventListener('click', function(evt) {
-  const flippedCard = evt.target;
-  // only allow two cards to flip at a time
-  if (flippedCard.classList.contains('card') && flippedCards.length < 2) {
-    showSymbol(flippedCard);
-    pushCards(flippedCard);
-    playerMoves();
-    hideStar();
-
-    if (flippedCards.length === 2) {
-      let firstCard = flippedCards[0];
-      let secondCard = flippedCards[1];
-      if (firstCard.innerHTML === secondCard.innerHTML) {
-        isMatching(firstCard, secondCard);
-        matchedCards++;
-      } else {
-        notMatching(firstCard, secondCard);
-      }
-    }
-  }
-});
-
 /*
- * Functions
+ * Build the Game Timers
  */
 
-// build a game timer
 // inspired by https://stackoverflow.com/questions/3733227/javascript-seconds-to-minutes-and-seconds
 let gameTimer = function buildTimer() {
   time++;
@@ -96,6 +73,10 @@ function stopTimer() {
   handle = 0;
 }
 
+/*
+ * Flip the cards
+ */
+
 // toggle classes to show symbol styles
 function showSymbol(evt) {
   evt.classList.add('open');
@@ -106,6 +87,33 @@ function showSymbol(evt) {
 function pushCards(flippedCard) {
   flippedCards.push(flippedCard);
 }
+
+// add an event listener to display the symbol of each card on click
+cardDeck.addEventListener('click', function(evt) {
+  const flippedCard = evt.target;
+  // only allow two cards to flip at a time
+  if (flippedCard.classList.contains('card') && flippedCards.length < 2) {
+    showSymbol(flippedCard);
+    pushCards(flippedCard);
+    playerMoves();
+    hideStar();
+
+    if (flippedCards.length === 2) {
+      let firstCard = flippedCards[0];
+      let secondCard = flippedCards[1];
+      if (firstCard.innerHTML === secondCard.innerHTML) {
+        isMatching(firstCard, secondCard);
+        matchedCards++;
+      } else {
+        notMatching(firstCard, secondCard);
+      }
+    }
+  }
+});
+
+/*
+ * Match the Cards
+ */
 
 // lock matched cards in the open position
 function isMatching(firstCard, secondCard) {
@@ -122,6 +130,10 @@ function notMatching(firstCard, secondCard) {
     flippedCards = [];
   }, 750);
 }
+
+/*
+ * Track Player Stats
+ */
 
 // keep track of player moves and start timer
 function playerMoves() {
@@ -143,6 +155,10 @@ function hideStar() {
   }
   return starsCount;
 }
+
+/*
+ * Display End of Game Stats
+ */
 
 // show end of game stats
 function showModal() {
@@ -170,6 +186,10 @@ cancelButton.addEventListener('click', function hideModal() {
  *   - shuffle the list of cards using the provided "shuffle" method below
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
+ */
+
+/*
+ * SHuffle Cards
  */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
