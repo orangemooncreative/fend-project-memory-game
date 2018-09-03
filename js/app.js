@@ -179,6 +179,7 @@ function resetGame() {
   resetStars();
   resetMoves();
   resetTimer();
+  resetCards();
 }
 
 function resetStars() {
@@ -204,6 +205,7 @@ function resetCards() {
   for (let card of cards) {
     card.className = 'card';
   }
+  newGame();
 }
 
 // nodelist to array inspired from: https://hackernoon.com/htmlcollection-nodelist-and-array-of-objects-da42737181f9
