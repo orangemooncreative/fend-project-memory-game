@@ -78,7 +78,11 @@ function pushCards(flippedCard) {
 cardDeck.addEventListener('click', function(evt) {
   const flippedCard = evt.target;
   // only allow two cards to flip at a time
-  if (flippedCard.classList.contains('card') && flippedCards.length < 2) {
+  if (
+    flippedCard.classList.contains('card') &&
+    flippedCards.length < 2 &&
+    !flippedCards.includes(flippedCard)
+  ) {
     showSymbol(flippedCard);
     pushCards(flippedCard);
     playerMoves();
