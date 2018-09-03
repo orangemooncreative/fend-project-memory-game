@@ -206,6 +206,15 @@ function resetCards() {
   }
 }
 
+// nodelist to array inspired from: https://hackernoon.com/htmlcollection-nodelist-and-array-of-objects-da42737181f9
+function newGame() {
+  cardsArray = Array.from(cards);
+  newCards = shuffle(cardsArray);
+  for (let card of newCards) {
+    cardDeck.appendChild(card);
+  }
+}
+
 resetButton.addEventListener('click', function() {
   resetGame();
 });
@@ -216,6 +225,7 @@ playButton.addEventListener('click', function() {
   hideModal();
   resetGame();
   resetCards();
+  newGame();
 });
 
 /*
