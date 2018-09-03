@@ -132,10 +132,10 @@ function playerMoves() {
 
 // hide stars & keep stars count
 function hideStar() {
-  if (movesCount === 10) {
+  if (movesCount === 20) {
     stars[2].setAttribute('style', 'display: none');
     starsCount = 2;
-  } else if (movesCount >= 20) {
+  } else if (movesCount >= 40) {
     stars[1].setAttribute('style', 'display: none');
     starsCount = 1;
   }
@@ -174,25 +174,20 @@ cancelButton.addEventListener('click', function() {
  * Reset Game
  */
 
-function resetGame() {
-  matchedCards = 0;
-  resetStars();
-  resetMoves();
-  resetTimer();
-  resetCards();
-}
-
+// reset stars
 function resetStars() {
   starsCount = 3;
   stars[2].removeAttribute('style');
   stars[1].removeAttribute('style');
 }
 
+// reset moves
 function resetMoves() {
   movesCount = 0;
   moves.textContent = movesCount;
 }
 
+// reset timer
 function resetTimer() {
   time = 0;
   seconds = 0;
@@ -200,46 +195,6 @@ function resetTimer() {
   timer.textContent = `0${minutes}:0${seconds}`;
   stopTimer();
 }
-
-function resetCards() {
-  for (let card of cards) {
-    card.className = 'card';
-  }
-  newGame();
-}
-
-// nodelist to array inspired from: https://hackernoon.com/htmlcollection-nodelist-and-array-of-objects-da42737181f9
-function newGame() {
-  cardsArray = [...cards];
-  newCards = shuffle(cardsArray);
-  for (let card of newCards) {
-    cardDeck.appendChild(card);
-  }
-}
-
-resetButton.addEventListener('click', function() {
-  resetGame();
-});
-
-// play the game again
-
-playButton.addEventListener('click', function() {
-  hideModal();
-  resetGame();
-  resetCards();
-  newGame();
-});
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
-/*
- * SHuffle Cards
- */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -258,28 +213,45 @@ function shuffle(array) {
   return array;
 }
 
-// TODO:
-// Cards are randomly placed
-// The symbols face down
-// On a click the card must turn and show the icon and stays turned
-// On a click on a different card the card must turn and show the icon
-// If the 2 turned cards match they stay turned
-// If the cards don't match they turn back
-// The game ends when all cards are flipped
-// When the game ends show a modal
-// Reset button
-// Star rating
-// Timer
-// Move counter
+// shuffle the cards for new game
+function newGame() {
+  cardsArray = [...cards];
+  newCards = shuffle(cardsArray);
+  for (let card of newCards) {
+    cardDeck.appendChild(card);
+  }
+}
+
+// reset cards
+function resetCards() {
+  for (let card of cards) {
+    card.className = 'card';
+  }
+  newGame();
+}
+
+// reset game when play and cancel buttons clicked
+
+function resetGame() {
+  matchedCards = 0;
+  resetStars();
+  resetMoves();
+  resetTimer();
+  resetCards();
+}
+
+// reset game when reset button clicked
+resetButton.addEventListener('click', function() {
+  resetGame();
+});
 
 /*
- * TODO:
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
+ * Play the game again
  */
+
+playButton.addEventListener('click', function() {
+  hideModal();
+  resetGame();
+  resetCards();
+  newGame();
+});

@@ -77,6 +77,7 @@ button {
 
 .deck {
   width: 660px;
+  max-width: 100%;
   min-height: 680px;
   background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
   padding: 32px;
@@ -91,13 +92,13 @@ button {
 
 .deck .card {
   height: 125px;
-  width: 125px;
   background: #2e3d49;
   font-size: 0;
   color: #ffffff;
   border-radius: 8px;
   cursor: pointer;
   display: flex;
+  flex: 0 0 21%;
   justify-content: center;
   align-items: center;
   box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
@@ -197,4 +198,27 @@ button {
   position: fixed;
   top: 0;
   width: 100%;
+}
+
+/* media queries */
+
+@media screen and (max-width: 768px) {
+  .deck {
+    width: 75%;
+  }
+
+  .deck .card {
+    flex: 0 0 30%;
+    margin-bottom: 1.5rem;
+  }
+}
+@media screen and (max-width: 500px) {
+  .deck {
+    width: 100%;
+  }
+
+  .deck .card {
+    flex: 0 0 42%;
+    margin-bottom: 2rem;
+  }
 }
