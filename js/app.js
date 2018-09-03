@@ -77,7 +77,7 @@ function pushCards(flippedCard) {
 // add an event listener to display the symbol of each card on click
 cardDeck.addEventListener('click', function(evt) {
   const flippedCard = evt.target;
-  // only allow two cards to flip at a time and exclude same card from being clicked twice
+  // only allow two cards to flip at a time and exclude the current card from being clicked twice
   if (
     flippedCard.classList.contains('card') &&
     flippedCards.length < 2 &&
