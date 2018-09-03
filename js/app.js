@@ -234,6 +234,7 @@ function resetCards() {
 
 function resetGame() {
   matchedCards = 0;
+  flippedCards = [];
   resetStars();
   resetMoves();
   resetTimer();
@@ -252,6 +253,5 @@ resetButton.addEventListener('click', function() {
 playButton.addEventListener('click', function() {
   hideModal();
   resetGame();
-  resetCards();
   newGame();
 });
